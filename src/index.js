@@ -26,9 +26,13 @@ const onDataInput = event => {
         countryListEl.innerHTML = createCountriesList(data);
         countryItemEl.innerHTML = '';
       } else if (data.length === 1) {
-        countryItemEl.innerHTML = createCountryCard(data);
+        const country = data[0];
+        const obj = {
+          ...country,
+          languages: Object.values(country.languages).join(','),
+        };
+        countryItemEl.innerHTML = createCountryCard(obj);
         countryListEl.innerHTML = '';
-        console.log(data);
       } else if (data.length === 0) {
         event.target.reset();
         return;
